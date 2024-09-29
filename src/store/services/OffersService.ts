@@ -24,7 +24,7 @@ export const offersApi = createApi({
             }
          }),
       }),
-      getOffersById: builder.query<IOffer, { id: number }>({
+      getOffersById: builder.query<IOffer, { id: number | string | undefined }>({
          query: ({ id }) => ({
             url: `products/${id}`
          }),

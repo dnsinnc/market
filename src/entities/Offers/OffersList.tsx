@@ -45,7 +45,7 @@ function OffersList({ limit, category }: OffersListProps) {
 
             offers &&
                offers.map((o: IOffer) => (
-                  <div onClick={() => nav(`/product/${o.id}`)} key={o.id} className="item">
+                  <div onClick={() => nav(`/market/product/${o.id}`)} key={o.id} className="item">
                      <div className="item__image">
                         <img src={o.image} alt={o.title} />
                      </div>

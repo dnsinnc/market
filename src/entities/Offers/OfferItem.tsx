@@ -17,6 +17,7 @@ function OfferItem() {
    const dispatch = useAppDispatch()
 
 
+   // // @ts-ignore
    const { data: offers, error, isLoading } = useGetOffersByIdQuery({ id: params.id })
 
 
