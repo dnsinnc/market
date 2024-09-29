@@ -1,0 +1,106 @@
+@import '../../app/adaptive/mixins.scss';
+
+.footer-form {
+   margin-top: 200px;
+   height: 200px;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+
+   &__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+   }
+
+   &__right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+   }
+
+}
+
+.about-us {
+   padding-top: 74px;
+   height: auto;
+
+   &__wrapp {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+   }
+
+   &__devcut {
+      text-align: center;
+      padding: 110px 0 20px 0;
+   }
+}
+
+.logo {
+   padding-top: 14px;
+   width: 273px;
+   font-size: 14px;
+   line-height: 1.75;
+   color: #5C5F6A;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+
+   &__wrapp {
+      display: flex;
+      gap: 16px;
+   }
+
+   &__title {
+      font-size: 24px;
+      font-family: 'Inter ExtraBold';
+      color: #0E1422;
+   }
+
+   &__network {
+      display: flex;
+      gap: 20px;
+      padding-top: 20px;
+   }
+}
+
+.about-us-info {
+   display: flex;
+   max-width: 573px;
+   gap: 72px;
+   flex-wrap: wrap;
+   padding-top: 20px;
+
+   div {
+      color: #5C5F6A;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 14px;
+   }
+
+   &__title {
+      font-size: 14px;
+      color: #878A92;
+      padding-bottom: 20px;
+   }
+}
+
+.payments {
+   width: 176px;
+
+   &__methods {
+      display: flex;
+      justify-content: space-between;
+   }
+
+}
+
+@include mobile {
+   .footer-form {
+      justify-content: center;
+      padding: 20px;
+   }
+}

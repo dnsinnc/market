@@ -1,0 +1,10 @@
+@import url('./app/fonts/font.css');
+@import url('./app/reset.css');
+@import "./shared/_shared-styles.scss";
+@import './widgets/HomeHeader/_homeheader.scss';
+@import './widgets/HomeMain/_homemain.scss';
+@import './entities/_entities-styles.scss';
+@import './widgets/HomeFooter/_home-footer.scss';
+@import './widgets/ProductMain/_productMain.scss'
+
+

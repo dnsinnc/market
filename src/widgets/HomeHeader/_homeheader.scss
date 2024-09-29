@@ -1,0 +1,154 @@
+@import url('../../app/fonts/font.css');
+@import '../../app/adaptive/mixins.scss';
+
+.header {
+   padding: 15px 150px;
+   height: 84px;
+   display: flex;
+   justify-content: space-between;
+
+   &__logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      p {
+         font-family: "Inter ExtraBold";
+      }
+   }
+
+   &__navigation {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      font-size: 14px;
+
+      color: #5C5F6A;
+   }
+
+   li{
+      cursor: pointer;
+   &:hover{
+      text-decoration: underline;
+   }
+}
+
+   &__input-and-icon {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+   }
+}
+
+.nav-icon{
+   svg{
+      height: 30px;
+   }
+}
+
+
+@include desktop {
+   .header {
+      padding: 0 110px;
+      height: 60px;
+
+      &__logo {
+         gap: 10px;
+
+   
+      }
+
+      &__navigation {
+         gap: 22px;
+         font-size: 12px;
+         img{
+            height: 5px;
+            
+         }
+      }
+
+      &__input-and-icon {
+         gap: 22px;
+
+      
+      }
+   }
+}
+
+@include tablet {
+
+   .header {
+
+      &__logo {
+         gap: 5px;
+
+ 
+      }
+
+      &__navigation {
+         display: none;
+      }
+
+      &__input-and-icon {
+         gap: 22px;
+
+      
+      }
+   }
+
+}
+
+@include mobile {
+   .header {
+
+      &__logo {
+         gap: 5px;
+
+         p {
+            display: none;
+         }
+
+   
+      }
+
+      &__navigation {
+         gap: 15px;
+         font-size: 12px;
+
+      }
+
+      &__input-and-icon {
+         gap: 10px;
+      }
+   }
+
+}
+
+@include mobile-sm {
+
+   .header {
+
+      &__logo {
+         gap: 5px;
+
+         p {
+            display: none;
+         }
+
+    
+      }
+
+      &__navigation {
+         gap: 1px;
+         font-size: 12px;
+      }
+
+      &__input-and-icon {
+         gap: 22px;
+         height: 18px;
+
+  
+      }
+   }
+
+}

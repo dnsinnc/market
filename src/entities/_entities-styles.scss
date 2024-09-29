@@ -1,0 +1,131 @@
+
+
+@import '../app/adaptive/mixins.scss';
+
+.offers-list {
+   display: flex;
+
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.item {
+   width: 264px;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   padding: 0px 6px;
+   overflow: hidden;
+
+   &__image {
+      width: 254px;
+      height: 330px;
+      display: flex;
+      border: 2px solid #e1e1e1;
+      justify-content: center;
+      align-items: start;
+      padding: 60px 0;
+      border-radius: 10px;
+      position: relative;
+   }
+
+   img {
+      height: 120px;
+   }
+
+   &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+   }
+
+   &__title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: 'Inter Medium';
+      font-size: 14px;
+      line-height: 1.75;
+   }
+
+   &__price {
+      display: flex;
+      justify-content: start;
+      gap: 16px;
+      color: #474B57;
+      align-items: flex-end;
+   }
+
+}
+
+.in-stock {
+   border: 1px solid #b5b5b5;
+   padding: 2px 16px;
+   border-radius: 16px;
+   color: black;
+   font-size: 12px;
+   line-height: 1.5;
+   transition: all 0.2s;
+
+   &:hover{
+      background-color: black;
+      color: white;
+
+
+   }
+}
+
+@include desktop{
+
+   .item {
+         width: 200px;
+
+         &__image {
+            width: 180px;
+            height: 220px;
+            padding: 50px 0;
+         }
+   
+         img {
+            height: 80px;
+         }
+   
+         &__title {
+            font-size: 12px;
+   
+         }
+   
+         &__price {
+            gap: 12px;
+            font-size: 12px;
+         }
+   
+      }
+
+            .in-stock {
+               font-size: 10px;
+            }
+
+}
+
+
+@include tablet {
+
+   .offers-list {
+         display: flex;
+         max-width: 400px;
+         justify-content: space-between;
+         margin: 0 auto;
+      }
+
+  
+
+}
+
+@include mobile-sm{
+      .offers-list {
+            justify-content: center;
+         }
+}

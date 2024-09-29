@@ -1,0 +1,174 @@
+@import "../../app/adaptive/mixins.scss";
+
+.wrapper {
+   background-color: #F6F6F6;
+}
+
+.title {
+   color: #0E1422;
+   font-size: clamp(40px, 10vw, 20px);
+   line-height: 150%;
+   font-family: 'Inter ExtraBold';
+
+}
+
+.subtitle {
+   color: #474B57;
+   line-height: 175%;
+   font-size: 14px;
+}
+
+
+.view-collections {
+   display: flex;
+   height: 440px;
+   position: relative;
+   justify-content: space-between;
+   flex-wrap: wrap;
+
+   &__left {
+
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 48px;
+   }
+
+   &__right {
+      width: 340px;
+      height: auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: end;
+      background: url(./images/Ellipse.png) center 70% no-repeat;
+      background-size: 100%;
+      position: relative;
+      flex-wrap: wrap;
+   }
+
+   &__man-img {
+      height: 382px;
+   }
+
+   &__star-img {
+      position: absolute;
+      left: 0px;
+      top: 92px;
+   }
+}
+
+.info {
+   padding-top: 90px;
+   display: flex;
+   justify-content: center;
+   gap: 54px;
+   flex-wrap: wrap;
+
+   div {
+      max-width: 328px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: start;
+      padding-right: 40px;
+   }
+
+   &__title {
+      font-family: "Inter ExtraBold";
+      font-size: 16px;
+   }
+}
+
+
+.best-selling {
+   text-align: center;
+   padding-top: 170px;
+   display: flex;
+   flex-direction: column;
+   gap: 80px;
+}
+
+
+.main-title {
+   color: #0E1422;
+   font-family: 'Inter ExtraBold';
+   font-size: 24px;
+
+}
+
+.main-label {
+   font-family: 'Inter Medium';
+   font-size: 12px;
+   color: #878A92;
+}
+
+.start-browsing {
+   margin-top: 170px;
+   height: auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+
+   img {
+      height: 311px;
+   }
+
+   &__left {
+      width: 462px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+   }
+}
+
+.product-gallery {
+   padding-top: 170px;
+}
+
+.toggle-btns-wrapp {
+   width: 130px;
+   display: flex;
+   gap: 24px;
+   margin: 0 auto;
+   padding-bottom: 48px;
+
+   button {
+      border-radius: 20px;
+      color: #5C5F6A;
+      font-size: 14px;
+      background-color: transparent;
+   }
+}
+
+
+.toggle-btn-active {
+   border-radius: 20px;
+   color: #202533;
+   border: 1px solid #d5d5d5;
+   padding: 3px 16px;
+   line-height: 1.75;
+}
+
+
+@include mobile {
+
+   .view-collections {
+      height: 700px;
+      justify-content: center;
+
+      &__left {
+         gap: 28px;
+      }
+
+      &__right {
+         justify-content: center;
+      }
+   }
+
+   .start-browsing {
+      justify-content: center;
+      padding: 20px;
+   }
+}
