@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { CustomInput } from "../UI/CustomInput/CustomInput";
 
+import Search from '../../widgets/HomeHeader/images/SeachIcon.png'
 
-// import Arrow from './images/arrow.png';
 
 
 function Menu() {
@@ -24,6 +25,9 @@ function Menu() {
 
          </button>
          {isOpen === false ? <ol className='menu__navigation'>
+            <div className='menu_input'>
+               <CustomInput placeholder={'Search products'} type={'search'} img={Search} />
+            </div>
             <li>Home</li>
             <li>Categories</li>
             <li>About</li>

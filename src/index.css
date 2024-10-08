@@ -1,4 +1,41 @@
+@import url('./app/fonts/font.css');
+@import url('./app/reset.css');
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+
+
+.page {
+   display: grid;
+   grid-template-rows: auto 1fr auto;
+   min-height: 100vh;
+   font-family: 'Inter Medium';
+}
+
+.size {
+   transition: all 1s;
+   @apply flex text-black items-center rounded-[4px] justify-center border-solid border-2 border-[#f6f6f6] w-[40px] h-[40px] cursor-pointer
+}
+
+.sizeActive {
+   border-color: rgb(146, 146, 146);
+}
+
+
+.size:active {
+   transform: scale(1.4);
+}
+
+.countBtn{
+   transition: all .4s;
+
+}
+.countBtn:active {
+   transform: scale(1.2);
+}

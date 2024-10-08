@@ -16,13 +16,11 @@ interface ButtonProps {
 
 export const CustomButton: FC<ButtonProps> = ({ children, onClick, variant }) => {
    return (
-      <div>
          <button
             onClick={onClick}
             className={`custom-button ${variant === ButtonVariant.transparent ? 'transparent' : ''}`}>
             {children}
          </button>
-      </div>
    );
 }
 

@@ -35,16 +35,13 @@ function OfferItem() {
             error && <ErrorMessage>Try again later, please...</ErrorMessage>
          }
 
-         <div className="flex">
-
-
-            <div className=' w-1/2'><img className=' w-[200px]' src={offers?.image} alt="" /></div>
+         <div className="flex ">
+            <div className='w-1/2'><img className=' w-auto' src={offers?.image} alt="" /></div>
             <div>
                <h2 className="text-2xl ">{offers?.title}</h2>
-               <h1 className="">${offers?.price}</h1>
+               <h1 >${offers?.price}</h1>
             </div>
-            
-            
+
          </div>
       </>
    );

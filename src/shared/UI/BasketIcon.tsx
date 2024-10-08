@@ -1,5 +1,6 @@
 
-import { TiShoppingCart } from "react-icons/ti";
+import { SlBasket } from "react-icons/sl";
+
 
 
 export function BascketIcon() {
@@ -8,7 +9,7 @@ export function BascketIcon() {
       <div>
          <div >
             <div className="nav-icon">
-          <TiShoppingCart/>
+               <SlBasket />
             </div>
          </div>
       </div>

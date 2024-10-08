@@ -105,7 +105,7 @@ function HomePage() {
                      </button>
                   </div>
                   <div>
-                     <OffersList limit={4} category={"jewelery"} />
+                     <OffersList limit={4} category={"men's clothing"} />
                   </div>
                </section>
             </main>

@@ -1,38 +1,42 @@
 
 import Logo from './images/Logomark.png';
-import Arrow from './images/arrow.png';
-import Search from './images/SeachIcon.png';
+
 
 import { CustomInput, BasketIcon, UserIcon } from '../../shared';
 import Menu from '../../shared/Menu/Menu';
+import { useNavigate } from 'react-router-dom';
+import { GoChevronDown } from "react-icons/go";
 
+
+import { CiSearch } from "react-icons/ci";
 
 
 function HomeHeader() {
+   const nav = useNavigate()
 
    return (
-      <header className='header container'>
+      <header className='header container  '>
 
          
-         <div className='header__logo'>
-            <img src={Logo} alt="LOGO" />
+         <div onClick={() => nav('/market')} className='header__logo cursor-pointer'>
+            <img  src={Logo} alt="LOGO" />
             <p>Ecommerce</p>
          </div>
          
         <ol className='header__navigation'>
-            <li>Home</li>
-            <li>Categories <img src={Arrow} alt="arrow-down" /></li>
+            <li onClick={()=> nav('/market')}>Home</li>
+            <li className='flex items-center gap-[5px]'>Categories <GoChevronDown size={'20px'}/></li>
             <li>About</li>
             <li>Contact</li>
          </ol>
 
          <div className='header__input-and-icon'>
-            <div>
-               <CustomInput placeholder={'Search products'} type={'search'} img={Search} />
+            <div className='header__input'>
+               <CustomInput placeholder={'Search products'} type={'search'} img={<CiSearch></CiSearch>} />
             </div>
-            <Menu></Menu>
-            <BasketIcon />
-            <UserIcon />
+               <Menu></Menu>
+               <BasketIcon />
+               <UserIcon />
          </div>
       </header>
    );

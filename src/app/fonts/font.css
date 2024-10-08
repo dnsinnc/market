@@ -11,7 +11,8 @@
 }
 
 @font-face {
-   font-family: 'Inter ExtraBold';
-   src: url('./Inter/static/Inter-ExtraBold.ttf');
+   font-family: 'Inter-ExtraBold';
+   src: url('./Inter/static/Inter-ExtraBold.ttf') ;
+   font-display: swap;
    font-style: normal;
 }

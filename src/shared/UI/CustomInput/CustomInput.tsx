@@ -3,13 +3,13 @@
 interface IInput{
    placeholder: string,
    type: string,
-   img: string
+   // img: string
 }
 
 export function CustomInput({ img, placeholder, type = 'text'}: IInput) {
    return (  
       <div className="input-wrapp">
-         <img className="image" src={img} alt="" />
+         {img}
          <input className="input" type={type} placeholder={placeholder} />
       </div>
      

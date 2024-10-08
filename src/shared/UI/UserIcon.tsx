@@ -1,6 +1,7 @@
 
 
-import { FaRegUserCircle } from "react-icons/fa";
+import { RiUser3Line } from "react-icons/ri";
+
 
 
 
@@ -9,7 +10,7 @@ export function UserIcon() {
    return (
       <div>
             <div className="nav-icon">
-               <FaRegUserCircle />
+            <RiUser3Line  />
 
          </div>
       </div>

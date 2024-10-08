@@ -18,17 +18,13 @@ function OffersList({ limit, category }: OffersListProps) {
 
    const nav = useNavigate()
 
-   const dispatch = useAppDispatch()
 
 
    const { data: offers, error, isLoading } = useGetOffersByCategoriesQuery({ category: category, limit: limit })
 
-   // console.log(offers)
 
 
-   useEffect(() => {
 
-   }, [dispatch, limit])
 
 
    return (
