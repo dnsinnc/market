@@ -6,10 +6,13 @@ export interface IOffer {
    title: string,
    description: string,
    category: string,
-   price: string,
+   price: number,
    image: string,
    rating: {
       rate: string,
       count: number
-   }
+   },
+   quantity: number,
+   size?: string,
+   totalPrice?: number 
 }

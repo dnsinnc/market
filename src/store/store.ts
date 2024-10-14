@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { offersApi } from './services/OffersService'
+import CartSlicer from './reducer/CartSlicer'
 
 export const store = configureStore({
    reducer: {
+      CartSlicer,
       [offersApi.reducerPath]: offersApi.reducer,
    },
    middleware: (getDefaultMiddleware) => 

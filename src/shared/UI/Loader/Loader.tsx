@@ -1,10 +1,8 @@
 
-
-
-
 export function Loader() {
    return (
-
-
-      <div className="loader">Loading...</div>);
+      <div className="flex justify-center w-[1100px]">
+         <div className="loader"></div>
+      </div>
+   );
 }

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { CustomInput } from "../UI/CustomInput/CustomInput";
 
-import Search from '../../widgets/HomeHeader/images/SeachIcon.png'
+import { CiSearch } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,8 @@ function Menu() {
       setIsOpen(!isOpen)
    }
 
+const nav = useNavigate()
+
    return (
 
       <div className="menu-wrapp">
@@ -26,12 +29,13 @@ function Menu() {
          </button>
          {isOpen === false ? <ol className='menu__navigation'>
             <div className='menu_input'>
-               <CustomInput placeholder={'Search products'} type={'search'} img={Search} />
+               <CustomInput placeholder={'Search products'} type={'search'} img={<CiSearch />} />
             </div>
-            <li>Home</li>
-            <li>Categories</li>
+            <li onClick={() => nav('/market')}>Home</li>
+            <li onClick={() => nav('/market/listing')} >Categories</li>
             <li>About</li>
             <li>Contact</li>
+            <li className="text-[red]" onClick={() => setIsOpen(!isOpen)}>Close</li>
          </ol> : ''}
       </div>
 

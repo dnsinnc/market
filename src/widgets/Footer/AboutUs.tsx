@@ -20,7 +20,7 @@ function AboutUs({ variant }: AboutUsProps) {
 
    return (
       <div className={variant === 'flooded' ? 'wrapper': ''}>
-         <div className='container about-us'>
+         <div className='container about-us '>
             <div className='about-us__wrapp'>
                <div className='logo'>
                   <div className='logo__wrapp'>

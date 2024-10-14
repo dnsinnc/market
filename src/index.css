@@ -1,14 +1,16 @@
 @import url('./app/fonts/font.css');
 @import url('./app/reset.css');
-
+@import url('./app/fonts/font.css');
+@import url('./app/reset.css');
+@import "./shared/_shared-styles.scss";
+@import './widgets/Header/_homeheader.scss';
+@import './pages/MainPage/_homemain.scss';
+@import './entities/_entities-styles.scss';
+@import './widgets/Footer/_home-footer.scss';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-
-
 
 
 .page {
@@ -39,3 +41,126 @@
 .countBtn:active {
    transform: scale(1.2);
 }
+
+
+.show-mess {
+   animation: hideMenu 1.5s ease-in-out forwards;
+   overflow: hidden;
+}
+
+@keyframes hideMenu {
+   0% {
+      opacity: 0;
+      height: 0;
+   }
+
+   30% {
+      opacity: 0;
+   }
+
+   70% {
+      opacity: 1;
+      height: 200px;
+   }
+
+   100% {
+      opacity: 0;
+      height: 0;
+   }
+}
+
+.slider {
+   width: 100%;
+   height: 4px;
+   border-radius: 5px;
+   position: relative;
+}
+
+.track {
+   position: absolute;
+   top: 3px;
+   background: #9f9f9f;
+   height: 4px;
+   border-radius: 10px;
+}
+
+.thumb {
+   border: 2px solid white;
+   height: 21px;
+   width: 21px;
+   background-color: #000000;
+   /* Колір "палець" повзунка */
+   /* Обводка */
+   border-radius: 50%;
+   cursor: pointer;
+   margin-top: -5px;
+   /* Для центрирования */
+   transition: all .2s;
+}
+
+.thumb:hover, .thumb:active {
+   transform: scale(1.1);
+   background-color: #585858;
+}
+
+.tooltip {
+   position: absolute;
+   background: #000000;
+   color: white;
+   border-radius: 5px;
+   margin-top: 25px;
+   padding: 5px;
+   font-size: 12px;
+   white-space: nowrap;
+   transform: translateX(-50%);
+
+}
+
+
+
+.custom-checkbox>input {
+   position: absolute;
+   z-index: -1;
+   opacity: 0;
+}
+
+.custom-checkbox>span {
+   display: inline-flex;
+   align-items: center;
+   user-select: none;
+}
+
+.custom-checkbox>span::before {
+   content: '';
+   display: inline-block;
+   width: 20px;
+   height: 20px;
+   flex-shrink: 0;
+   flex-grow: 0;
+   border: 1px solid #adb5bd;
+   border-radius: 0.25em;
+   margin-right: 0.5em;
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-size: 50% 50%;
+   cursor: pointer;
+}
+
+
+
+.custom-checkbox>input:not(:disabled):active+span::before {
+   background-color: #969ca3;
+   border-color:#969ca3;
+}
+
+.custom-checkbox>input:focus+span::before {
+   box-shadow: 0 0 0 0.2rem rgba(92, 94, 96, 0.25);
+}
+
+
+.custom-checkbox>input:checked+span::before {
+   border-color: #838c96;
+   background-color: #7b8086;
+   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+

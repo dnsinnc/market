@@ -16,34 +16,11 @@
 
 @media (max-width: 1400px) {
    .container {
-      padding: 0 122px;
-   }
-}
-
-@media (max-width: 1140px) {
-   .container {
-      padding: 0 82px;
-   }
-}
-
-
-@media (max-width: 940px) {
-   .container {
-      padding: 0 40px;
-   }
-}
-
-@media (max-width: 740px) {
-   .container {
       padding: 0 20px;
    }
 }
 
-@media (max-width: 670px) {
-   .container {
-      width: 100%;
-   }
-}
+
 
 
 

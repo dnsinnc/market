@@ -8,22 +8,14 @@
    padding: 5px 16px;
    border-radius: 16px;
    color: black;
-   font-size: 12px;
-   transition: all 0.2s;
-
-   &:hover {
-      background-color: black;
-      color: white;
-   }
+   font-size: 12px; 
 }
-
-
 
 
 .offers-list {
    display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
 }
 
 
@@ -84,28 +76,21 @@
 }
 
 
-@include desktop {
-.offers-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-   }
+// @include desktop {
+// .offers-list {
+//       display: grid;
+//       grid-template-columns: repeat(2, 1fr);
+//       gap: 30px;
+//    }
 
 
-}
-
-@include laptop {
-
-   
+// }
 
 
-
-}
-
-@include tablet {
-.offers-list {
-      display: grid;
-      grid-template-columns: repeat(1, 100%);
-      gap: 30px;
-   }
-}
+// @include tablet {
+// .offers-list {
+//       display: grid;
+//       grid-template-columns: repeat(1, 100%);
+//       gap: 30px;
+//    }
+// }

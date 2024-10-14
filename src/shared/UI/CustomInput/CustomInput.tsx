@@ -3,7 +3,7 @@
 interface IInput{
    placeholder: string,
    type: string,
-   // img: string
+   img?: JSX.Element
 }
 
 export function CustomInput({ img, placeholder, type = 'text'}: IInput) {

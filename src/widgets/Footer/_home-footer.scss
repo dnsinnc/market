@@ -1,11 +1,12 @@
 @import '../../app/adaptive/mixins.scss';
 
 .footer-form {
-   margin-top: 200px;
-   height: 200px;
+   padding-top: 64px;
+   height: auto;
    display: flex;
    justify-content: space-between;
    flex-wrap: wrap;
+   padding-bottom: 64px;
 
    &__left {
       display: flex;
