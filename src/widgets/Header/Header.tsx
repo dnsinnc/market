@@ -5,7 +5,6 @@ import Logo from './images/Logomark.png';
 import { CustomInput, UserIcon } from '../../shared';
 import Menu from '../../shared/Menu/Menu';
 import { useNavigate } from 'react-router-dom';
-import { GoChevronDown } from "react-icons/go";
 
 
 import { CiSearch } from "react-icons/ci";

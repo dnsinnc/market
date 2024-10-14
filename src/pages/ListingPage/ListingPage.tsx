@@ -64,7 +64,7 @@ const ListingPage: FC = () => {
       filteredOffers.sort((a, b) => a.price - b.price);
    }
    if (selectedOpt === 'Best Rated') {
-      filteredOffers.sort((a, b) => b.rating.rate - a.rating.rate);
+      filteredOffers.sort((a, b) => parseFloat(b.rating.rate) - parseFloat(a.rating.rate));
    }
 
    const categories = ["men's clothing", "women's clothing", "jewelery", "electronics"]
@@ -150,7 +150,7 @@ const ListingPage: FC = () => {
                   <div className="relative z-[100] flex text-[14px] justify-between opacity-[0.7]">
                      <p > {filteredOffers.length} Results</p>
                      <div className="w-[150px]">
-                        <CustomSelect onSelectOption={(op) => onSelectOption(op)} options={options}
+                        <CustomSelect onSelectOption={(op: SetStateAction<string>) => onSelectOption(op)} options={options}
                            label={`SORT BY: `} onClick={onShowSelect} state={showSelect} selectOption={selectedOpt} />
                      </div>
                   </div>

@@ -3,14 +3,24 @@ import { GoChevronUp } from "react-icons/go";
 
 
 
+interface SelectProps {
+   options: string[],
+   label: string,
+   onClick: () => void,
+   state: boolean,
+   onSelectOption: (op: string) => void, 
+   selectOption: string
+}
 
 
 
 
-const CustomSelect = ({ options, label, onClick, state, onSelectOption, selectOption }) => {
+const CustomSelect = ({ options, label, onClick, state, onSelectOption, selectOption }: SelectProps) => {
 
-   const setSelectOption = (op) => {
-      onSelectOption(op)
+   const setSelectOption = (op: string) => {
+      if (op) { 
+         onSelectOption(op);
+      }
     
    }
    return ( 
