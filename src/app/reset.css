@@ -8,21 +8,6 @@
    font-family: "Inter Medium";
 }
 
-.container {
-   max-width: 1440px;
-   margin: 0 auto;
-   padding: 0 172px;
-}
-
-@media (max-width: 1400px) {
-   .container {
-      padding: 0 20px;
-   }
-}
-
-
-
-
 
 
 body {

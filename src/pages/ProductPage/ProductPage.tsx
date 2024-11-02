@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CustomButton, DiscountCard } from "../../shared";
 import { useGetOffersByIdQuery } from "../../store/services/OffersService";
 
@@ -86,6 +86,12 @@ const ProductPage: FC = () => {
       );
    };
 
+   
+
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, [])
+
 
    return (
       <div className="page">
@@ -95,8 +101,8 @@ const ProductPage: FC = () => {
          </div>
 
          <div className="container">
-            <div className="text-[clamp(8px,3.5vw,16px)] flex gap-3 items-center">
-               <span className="opacity-[0.8] my-[30px]">Ecommerce </span><GoChevronRight color="" /> {offer?.title}
+            <div className="text-[clamp(8px,3.5vw,16px)] cursor-pointer flex gap-3 items-center">
+               <span className="opacity-[0.8] my-[30px]"><Link to={'/market'}>Ecommerce</Link> </span><GoChevronRight color="" /> {offer?.title}
             </div>
 
             <div>

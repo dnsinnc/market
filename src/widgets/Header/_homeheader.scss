@@ -50,7 +50,7 @@
 
 @include desktop {
    .header {
-      padding: 0 110px;
+      padding: 0 10px;
       height: 60px;
 
       &__logo {
@@ -79,17 +79,13 @@
 
    .header {
       padding: 10px 10px;
+      height: auto;
 
       &__logo {
          gap: 5px;
-
- 
       }
 
-      &__navigation {
-         display: none;
-      }
-
+    
       &__input-and-icon {
          gap: 22px;
       }
@@ -102,10 +98,6 @@
 
       &__logo {
          gap: 5px;
-
-         p {
-            display: none;
-         }
 
    
       }
@@ -133,9 +125,7 @@
       &__logo {
          gap: 5px;
 
-         p {
-            display: none;
-         }
+         
 
     
       }

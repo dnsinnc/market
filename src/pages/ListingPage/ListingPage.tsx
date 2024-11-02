@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { DiscountCard, Loader } from "../../shared";
 import ErrorMessage from "../../shared/UI/ErrorMessage";
 import { IOffer } from "../../store/reducer/models";
@@ -23,6 +23,7 @@ const ListingPage: FC = () => {
    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
    const [showSelect, setsShowSelect] = useState<boolean>(false);
    const [selectedOpt, setSelectedOpt] = useState<string>(' ');
+   const [searchValue, setSearchValue] = useState(sessionStorage.getItem('search'));
 
 
    const onShowSelect = () => {
@@ -32,6 +33,16 @@ const ListingPage: FC = () => {
       setSelectedOpt(op)
       setsShowSelect(false)
    }
+
+   useEffect(() => {
+     
+         setSearchValue(sessionStorage.getItem('search'))
+         console.log(searchValue)
+    
+     
+
+   }, [sessionStorage.getItem('search')])
+
 
    const handleCategoryChange = (category: string) => {
       setSelectedCategories((prev) => {
@@ -50,12 +61,19 @@ const ListingPage: FC = () => {
       }
    }, [offers]);
 
+
    const filteredOffers = offers?.filter((o: IOffer) => {
-  
-      const inPriceRange = o.price >= minPrice && o.price <= maxPrice;
-      const inSelectedCategories = selectedCategories.length === 0 || selectedCategories.includes(o.category);
-      return inPriceRange && inSelectedCategories;
-   }) || [];
+         const inPriceRange = o.price >= minPrice && o.price <= maxPrice;
+         const inSelectedCategories = selectedCategories.length === 0 || selectedCategories.includes(o.category);
+      if (searchValue) {
+         const matchesSearchTerm = !searchValue || o.title.toLowerCase().includes(searchValue.toLowerCase());
+         return inPriceRange && inSelectedCategories && matchesSearchTerm;
+      } else {
+         return inPriceRange && inSelectedCategories
+      }
+      
+      }) || [];
+
 
    if (selectedOpt === 'Price (High to Low)') {
       filteredOffers.sort((a, b) => b.price - a.price);
@@ -74,20 +92,16 @@ const ListingPage: FC = () => {
       <div className="page">
          <div>
             <DiscountCard />
-            <Header />
+            <Header autoFocus={true} />
             <div className="text-[clamp(8px,3.5vw,16px)] bg-[#f6f6f6] flex gap-3 items-center">
-               <div className="container flex h-[64px] items-center gap-2"><span className="opacity-[0.8] ">Ecommerce </span><GoChevronRight color="" /> Cart</div>
+               <div className="container cursor-pointer flex h-[64px] items-center gap-2"><span className="opacity-[0.8] "><Link to={'/market'}>Ecommerce</Link> </span><GoChevronRight color="" />Search</div>
             </div>
          </div>
 
          <section className="container pt-9 ">
-            
-
             <div className="md:flex-nowrap flex gap-[20px] justify-evenly flex-wrap">
-               <div className="md:w-[280px] gap-[20px] w-full h-[550px] rounded-[6px] flex flex-col border-solid border-2 border-[#f6f6f6] px-[18px] py-[24px]">
+               <div className="md:min-w-[400px] min-w-full gap-[20px] h-[550px] rounded-[6px] flex flex-col border-solid border-2 border-[#f6f6f6] px-[40px] py-[24px]">
                   <p>Categories</p>
-
-
                   {categories.map(categ => (
                      <>
                         <div className="flex pt-[10px] capitalize text-[grey] gap-[10px]">
@@ -129,7 +143,7 @@ const ListingPage: FC = () => {
                   </div>
                </div>
           
-               <div className="max-w-[754px] flex flex-col gap-4">
+               <div className="w-[60%] relative flex flex-col gap-4">
                   <p>Applied Filters:</p>
                   <div className="flex gap-3 flex-wrap">
                      {selectedCategories.map(category => (
@@ -147,7 +161,7 @@ const ListingPage: FC = () => {
                         </div>
                      ))}
                   </div>
-                  <div className="relative z-[100] flex text-[14px] justify-between opacity-[0.7]">
+                  <div className="w-full z-[100] flex text-[14px] justify-between opacity-[0.7]">
                      <p > {filteredOffers.length} Results</p>
                      <div className="w-[150px]">
                         <CustomSelect onSelectOption={(op: SetStateAction<string>) => onSelectOption(op)} options={options}
@@ -155,7 +169,7 @@ const ListingPage: FC = () => {
                      </div>
                   </div>
 
-                  <div className="offers-list pt-[10px]">
+                  <div className="offers-list justify-start">
                      {isLoading && <Loader />}
                      {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
                      {offers && filteredOffers.map((o: IOffer) => (

@@ -12,12 +12,22 @@ import shield from './images/shield.png'
 import categoryImage from './images/categoryImage.png'
 
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 const HomePage: FC = () => {
 
 
-   const [toggleActive, setToggleActive] = useState('featured')
+   const [toggleActive, setToggleActive] = useState("Men's")
+   const [activeProduct, setActiveProduct] = useState('electronics')
+
+   useEffect(() => {
+      const intervalId = setInterval(() => {
+         setActiveProduct(prevProduct =>
+            prevProduct === 'electronics' ? 'jewelery' : 'electronics'
+         );
+      }, 4000); 
+      return () => clearInterval(intervalId); 
+   }, []);
 
    return (
       <div className="page">
@@ -35,11 +45,13 @@ const HomePage: FC = () => {
                         <h1 className='title'>Fresh Arrivals Online</h1>
                         <p className='subtitle'>Discover Our Newest Collection Today.</p>
                      </div>
-                     <CustomButton
-                        onClick={() => console.log("View Collection")} >
-                        View Collection
-                        <GoArrowRight />
-                     </CustomButton>
+                     <div className="md:max-w-[200px] w-full">
+                        <CustomButton
+                           onClick={() => console.log("View Collection")} >
+                           View Collection
+                           <GoArrowRight />
+                        </CustomButton>
+                     </div>
                   </div>
                   <div className="view-collections__right">
                      <img className="view-collections__man-img" src={Man} alt="man" />
@@ -74,7 +86,7 @@ const HomePage: FC = () => {
                   <p className='main-label'>SHOW HOW</p>
                   <h3 className='main-title'>Best Selling</h3>
                </div>
-               <OffersList limit={4} category={"electronics"} />
+                  <OffersList limit={4} category={activeProduct} />
             </section>
 
             <div className="wrapper ">
@@ -82,11 +94,13 @@ const HomePage: FC = () => {
                   <div className='start-browsing__left'>
                      <h3 className="main-title">Browse Our Fashion Paradise!</h3>
                      <p className="subtitle">Step into a world of style and explore our diverse collection of clothing categories.</p>
-                     <CustomButton
-                        onClick={() => console.log("Start Browsing")} >
-                        Start Browsing
-                        <GoArrowRight />
-                     </CustomButton>
+                     <div className="md:max-w-[200px] w-full">
+                        <CustomButton
+                           onClick={() => console.log("Start Browsing")} >
+                           Start Browsing
+                           <GoArrowRight />
+                        </CustomButton>
+                    </div>
                   </div>
                   <div>
                      <img src={categoryImage} alt="category image" />
@@ -97,18 +111,18 @@ const HomePage: FC = () => {
 
             <section className='container product-gallery'>
                <div className='toggle-btns-wrapp'>
-                  <button onClick={() => setToggleActive('featured')}
-                     className={toggleActive === 'featured' ? 'toggle-btn-active' : ''}
-                  >Featured
+                  <button onClick={() => setToggleActive("Men's")}
+                     className={toggleActive === "Men's" ? 'toggle-btn-active' : ''}
+                  >Men's
                   </button>
 
-                  <button onClick={() => setToggleActive('latest')}
-                     className={toggleActive === 'latest' ? 'toggle-btn-active' : ''}
-                  >Latest
+                  <button onClick={() => setToggleActive("Women's")}
+                     className={toggleActive === "Women's" ? 'toggle-btn-active' : ''}
+                  >Women's
                   </button>
                </div>
                <div>
-                  <OffersList limit={4} category={"men's clothing"} />
+                  <OffersList limit={4} category={`${toggleActive == "Men's" ? "men's clothing" : toggleActive == "Women's" ? "women's clothing" : ''}`} />
                </div>
             </section>
          </main>

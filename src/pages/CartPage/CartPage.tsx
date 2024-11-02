@@ -9,7 +9,7 @@ import { HiMinus } from "react-icons/hi";
 import { FiPlus } from "react-icons/fi";
 import { changeQuantity, deleteOffer } from "../../store/reducer/CartSlicer";
 import { RxCross1 } from "react-icons/rx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IOffer } from "../../store/reducer/models";
 import Header from "../../widgets/Header/Header";
 import AboutUs from "../../widgets/Footer/AboutUs";
@@ -56,8 +56,8 @@ const CartPage: FC = () => {
             <div className="bg-[#f6f6f6] h-[160px]">
                <div className="container h-full flex flex-col justify-center">
                   <h2 className="text-2xl font-['Inter-ExtraBold']">Cart</h2>
-                  <div className="text-[clamp(8px,3.5vw,16px)] flex gap-3 items-center">
-                     <span className="opacity-[0.8] ">Ecommerce </span><GoChevronRight color="" /> Cart
+                  <div className="text-[clamp(8px,3.5vw,16px)] cursor-pointer flex gap-3 items-center">
+                     <span className="opacity-[0.8] "><Link to={'/market'}>Ecommerce</Link></span><GoChevronRight color="" /> Cart
                   </div>
                </div>
             </div>
@@ -103,7 +103,7 @@ const CartPage: FC = () => {
 
                         :
                         <div className="font-['Inter-ExtraBold'] text-[grey] pt-[80px]">The basket is empty, 
-                           <span className="underline text-[black] font-['Inter-ExtraBold']"> find the products!</span></div>}
+                           <span onClick={() => nav('/market/listing')} className="underline cursor-pointer text-[black] font-['Inter-ExtraBold']"> find the products!</span></div>}
                   </div>
                   <div className="p-[24px] mt-[56px] border-2 border-solid border-[#e1e1e1]  w-[340px]">
                      <div>
@@ -129,7 +129,7 @@ const CartPage: FC = () => {
 
                      <div className="pt-[32px] flex flex-col items-center gap-[32px]">
                         <CustomButton onClick={() => console.log('Checkout')}>Checkout</CustomButton>
-                        <p>Continue Shopping</p>
+                        <p onClick={() => nav('/market/listing')} className="underline cursor-pointer">Continue Shopping</p>
                      </div>
                   </div>
                </div>
