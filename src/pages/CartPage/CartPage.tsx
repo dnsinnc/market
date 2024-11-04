@@ -88,7 +88,7 @@ const CartPage: FC = () => {
                                  </div>
                               </div>
                                  <div className="flex items-center gap-[32px]">
-                                    <p>${offer.totalPrice}</p>
+                                 <p>${offer.totalPrice && offer.totalPrice.toFixed(2)}</p>
                                     <div className="border-solid gap-4 rounded-[4px] border-2 border-[#e1e1e1] max-w-[200px] px-[16px] flex justify-between h-[44px] items-center">
                                        <button className="countBtn" onClick={() => handleQuantityChange(offer.id, offer.size!, -1)}> <HiMinus /></button>
                                        {offer.quantity}

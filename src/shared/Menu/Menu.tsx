@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { CustomInput } from "../UI/CustomInput/CustomInput";
 
-import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { GoArrowUp } from "react-icons/go";
 
@@ -31,7 +29,7 @@ const nav = useNavigate()
           <ol className={`menu__navigation ${isOpen ? 'animMenuClose' : 'animMenuOpen'}`}>
             
             <li onClick={() => nav('/market')}>Home</li>
-            <li onClick={() => nav('/market/listing')} >Categories</li>
+            <li onClick={() => nav('/market/listing')} >Products</li>
             <li className="opacity-[0.3]">About</li>
             <li className="opacity-[0.3]">Contact</li>
             <li className="text-[red] active:scale-125 " onClick={() => setIsOpen(!isOpen)}><GoArrowUp size={'60px'} /></li>

@@ -15,8 +15,8 @@ import { FaRegHeart } from "react-icons/fa";
 
 import { addOffer } from "../../store/reducer/CartSlicer";
 import { useAppDispatch } from "../../store/hooks";
-import ToastMess, { ToastVariant } from "../../shared/Messages/ToastMess";
 import { IOffer } from "../../store/reducer/models";
+import { FcOk } from "react-icons/fc";
 
 import '../../shared'
 import Footer from "../../widgets/Footer/Footer";
@@ -54,10 +54,12 @@ const ProductPage: FC = () => {
       dispatch(addOffer({ ...offer, size: selectSize, quantity: quantity }));
 
       setDddOfferBtn(true)
+      window.scrollTo(0, 0);
 
       setTimeout(() => {
          setDddOfferBtn(false)
-      }, 1500)
+      }, 2000)
+
    };
 
    const selectYourSize = (element: React.MouseEvent<HTMLParagraphElement>) => {
@@ -94,22 +96,26 @@ const ProductPage: FC = () => {
 
 
    return (
-      <div className="page">
+      <div  className="page">
          <div>
             <DiscountCard/>
             <Header offerSucc={addOfferBtn}/>
          </div>
-
-         <div className="container">
-            <div className="text-[clamp(8px,3.5vw,16px)] cursor-pointer flex gap-3 items-center">
+        
+         <div className="container ">
+            <div className="text-[clamp(8px,3.5vw,16px)]  cursor-pointer flex gap-3 items-center">
                <span className="opacity-[0.8] my-[30px]"><Link to={'/market'}>Ecommerce</Link> </span><GoChevronRight color="" /> {offer?.title}
             </div>
 
+            {addOfferBtn ? <div className="absolute toastAnim top-[0px] w-full py-[10px] text-center text-white bg-[green] right-[50%] translate-x-[50%] text-[24px]">
+               <div className="text-[clamp(8px,3.5vw,16px)]  flex justify-center items-center gap-[10px]">
+                  <FcOk/> The product has been successfully added to the cart  
+               </div>
+            </div> : ''}
+
             <div>
                <div className="relative">
-                  <div className="absolute top-[20%] text-center color-[green] right-[50%] translate-x-[50%] text-[24px]">
-                     {addOfferBtn ? <ToastMess variant={ToastVariant.success} >The product has been successfully added to the cart  </ToastMess> : ''}
-                  </div>
+                 
                   <div className="md:justify-between md:flex-nowrap gap-[20px] flex  flex-wrap">
                      <div
                         className='md:w-1/2 w-full flex border-solid border-2 rounded-[10px] border-[#e1e1e1] h-[500px] items-center justify-center '><img className='max-w-[300px] max-h-[200px]' src={offer?.image} alt="" />
@@ -137,9 +143,10 @@ const ProductPage: FC = () => {
                                  <div className="gap-2 flex ">
                                     <p onClick={(element) => selectYourSize(element)} className={`size ${selectSize === "S" ? 'sizeActive' : ''}`}>S</p>
                                     <p onClick={(element) => selectYourSize(element)} className={`size ${selectSize === "M" ? 'sizeActive' : ''}`}>M</p>
-                                    <p className={`size`}>X</p>
-                                    <p className={`size`}>XL</p>
-                                    <p className={`size`}>XXL</p>
+                                    <div className="opacity-[0.5] gap-2 flex">
+                                       <p className={`size`}>X</p>
+                                       <p className={`size`}>XL</p>
+                                   </div>
                                  </div>
                               </div> : ''}
                            </div>

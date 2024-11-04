@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DiscountCard, Loader } from "../../shared";
 import ErrorMessage from "../../shared/UI/ErrorMessage";
 import { IOffer } from "../../store/reducer/models";
@@ -11,6 +11,8 @@ import ReactSlider from 'react-slider';
 import { RxCross2 } from "react-icons/rx";
 import { GoChevronRight } from "react-icons/go";
 import CustomSelect from "../../shared/CustomSelect/CustomSelect";
+import { VscSettings } from "react-icons/vsc";
+
 
 
 
@@ -24,6 +26,7 @@ const ListingPage: FC = () => {
    const [showSelect, setsShowSelect] = useState<boolean>(false);
    const [selectedOpt, setSelectedOpt] = useState<string>(' ');
    const [searchValue, setSearchValue] = useState(sessionStorage.getItem('search'));
+   const [showSortSetting, setShowSortSetting] = useState<boolean>(false);
 
 
    const onShowSelect = () => {
@@ -35,11 +38,9 @@ const ListingPage: FC = () => {
    }
 
    useEffect(() => {
-     
-         setSearchValue(sessionStorage.getItem('search'))
-         console.log(searchValue)
-    
-     
+
+      setSearchValue(sessionStorage.getItem('search'))
+
 
    }, [sessionStorage.getItem('search')])
 
@@ -63,21 +64,21 @@ const ListingPage: FC = () => {
 
 
    const filteredOffers = offers?.filter((o: IOffer) => {
-         const inPriceRange = o.price >= minPrice && o.price <= maxPrice;
-         const inSelectedCategories = selectedCategories.length === 0 || selectedCategories.includes(o.category);
+      const inPriceRange = o.price >= minPrice && o.price <= maxPrice;
+      const inSelectedCategories = selectedCategories.length === 0 || selectedCategories.includes(o.category);
       if (searchValue) {
          const matchesSearchTerm = !searchValue || o.title.toLowerCase().includes(searchValue.toLowerCase());
          return inPriceRange && inSelectedCategories && matchesSearchTerm;
       } else {
          return inPriceRange && inSelectedCategories
       }
-      
-      }) || [];
+
+   }) || [];
 
 
    if (selectedOpt === 'Price (High to Low)') {
       filteredOffers.sort((a, b) => b.price - a.price);
-   } 
+   }
    if (selectedOpt === 'Price (Low to High)') {
       filteredOffers.sort((a, b) => a.price - b.price);
    }
@@ -92,15 +93,20 @@ const ListingPage: FC = () => {
       <div className="page">
          <div>
             <DiscountCard />
-            <Header autoFocus={true} />
+            <Header serching autoFocus={true} />
             <div className="text-[clamp(8px,3.5vw,16px)] bg-[#f6f6f6] flex gap-3 items-center">
                <div className="container cursor-pointer flex h-[64px] items-center gap-2"><span className="opacity-[0.8] "><Link to={'/market'}>Ecommerce</Link> </span><GoChevronRight color="" />Search</div>
             </div>
          </div>
 
          <section className="container pt-9 ">
+            <div className="md:hidden flex justify-start py-[20px]">
+               <div className="hover:scale-125 cursor-pointer duration-200">
+                  <VscSettings onClick={() => setShowSortSetting(!showSortSetting)} size={"30px"} /></div></div>
             <div className="md:flex-nowrap flex gap-[20px] justify-evenly flex-wrap">
-               <div className="md:min-w-[400px] min-w-full gap-[20px] h-[550px] rounded-[6px] flex flex-col border-solid border-2 border-[#f6f6f6] px-[40px] py-[24px]">
+               <div className={`md:min-w-[300px] overflow-hidden md:hidden flex 
+                  ${!showSortSetting ? 'hideSettingAnim' : 'showSettingAnim'} min-w-full gap-[20px] 
+                  rounded-[6px]  flex-col border-solid border-2 border-[#f6f6f6] `}>
                   <p>Categories</p>
                   {categories.map(categ => (
                      <>
@@ -110,16 +116,11 @@ const ListingPage: FC = () => {
                                  checked={selectedCategories.includes(categ)}
                                  onChange={() => handleCategoryChange(categ)} />
                               <span>{categ}</span>
-
                            </label>
-
                         </div>
                         <hr />
                      </>
-
                   ))}
-
-
                   <div className="w-full flex flex-col gap-[30px] pt-[30px]">
                      <h2>Price</h2>
                      <ReactSlider
@@ -139,11 +140,50 @@ const ListingPage: FC = () => {
                            </div>
                         )}
                      />
-
                   </div>
                </div>
-          
-               <div className="w-[60%] relative flex flex-col gap-4">
+
+                  <div className="md:min-w-[350px] overflow-hidden md:flex hidden 
+                   min-w-full gap-[20px] p-[30px] h-[550px] rounded-[6px]  flex-col border-solid border-2 border-[#f6f6f6] ">
+                     <p>Categories</p>
+                     {categories.map(categ => (
+                        <>
+                           <div className="flex pt-[10px] capitalize text-[grey] gap-[10px]">
+                              <label className="custom-checkbox">
+                                 <input type="checkbox" value="value-1"
+                                    checked={selectedCategories.includes(categ)}
+                                    onChange={() => handleCategoryChange(categ)} />
+                                 <span>{categ}</span>
+                              </label>
+                           </div>
+                           <hr />
+                        </>
+                     ))}
+                     <div className="w-full flex flex-col gap-[30px] pt-[30px]">
+                        <h2>Price</h2>
+                        <ReactSlider
+                           min={0}
+                           max={1000}
+                           value={[minPrice, maxPrice]}
+                           onChange={(values) => {
+                              setMinPrice(values[0]);
+                              setMaxPrice(values[1]);
+                           }}
+                           className="slider"
+                           thumbClassName="thumb"
+                           trackClassName="track"
+                           renderThumb={(props, state) => (
+                              <div  {...props}>
+                                 <div className="tooltip">${state.valueNow}</div>
+                              </div>
+                           )}
+                        />
+                     </div>
+                  </div>
+
+            
+
+               <div className="w-full relative flex flex-col gap-4">
                   <p>Applied Filters:</p>
                   <div className="flex gap-3 flex-wrap">
                      {selectedCategories.map(category => (
@@ -161,20 +201,24 @@ const ListingPage: FC = () => {
                         </div>
                      ))}
                   </div>
-                  <div className="w-full z-[100] flex text-[14px] justify-between opacity-[0.7]">
+                  <div className="flex-wrap gap-4 z-[100] flex text-[14px] justify-between opacity-[0.7]">
                      <p > {filteredOffers.length} Results</p>
-                     <div className="w-[150px]">
+                     <div className="min-w-[200px]">
                         <CustomSelect onSelectOption={(op: SetStateAction<string>) => onSelectOption(op)} options={options}
                            label={`SORT BY: `} onClick={onShowSelect} state={showSelect} selectOption={selectedOpt} />
                      </div>
                   </div>
+                  {!isLoading &&
+                     filteredOffers.length === 0 ? <p className='text-[20px] pt-[80px] text-center opacity-[0.6] '>Product not found</p> : ""
+                  }
 
-                  <div className="offers-list justify-start">
+
+                  <div className="offers-list justify-between">
                      {isLoading && <Loader />}
                      {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
                      {offers && filteredOffers.map((o: IOffer) => (
-                        <div onClick={() => nav(`/market/product/${o.id}`)} key={o.id} className="item">
-                           <div className="item__image">
+                        <div  key={o.id} className="item">
+                           <div onClick={() => nav(`/market/product/${o.id}`)} className="item__image">
                               <img src={o.image} alt={o.title} />
                            </div>
                            <div className="item__info">

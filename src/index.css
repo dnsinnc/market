@@ -13,6 +13,8 @@
 @tailwind utilities;
 
 
+
+
 .page {
    display: grid;
    grid-template-rows: auto 1fr auto;
@@ -20,16 +22,18 @@
    font-family: 'Inter Medium';
 }
 
+
 .container {
    max-width: 1440px;
    margin: 0 auto;
-   
-   @apply xl:max-w-[1440px] w-full px-8
+
+   @apply xl:max-w-[1440px] w-full px-4
 }
 
-a:hover{
+a:hover {
    text-decoration: underline;
 }
+
 .size {
    transition: all 1s;
    @apply flex text-black items-center rounded-[4px] justify-center border-solid border-2 border-[#f6f6f6] w-[40px] h-[40px] cursor-pointer
@@ -44,10 +48,11 @@ a:hover{
    transform: scale(1.4);
 }
 
-.countBtn{
+.countBtn {
    transition: all .4s;
 
 }
+
 .countBtn:active {
    transform: scale(1.2);
 }
@@ -99,14 +104,15 @@ a:hover{
    height: 21px;
    width: 21px;
    background-color: #000000;
-  
+
    border-radius: 50%;
    cursor: pointer;
    margin-top: -5px;
    transition: all .2s;
 }
 
-.thumb:hover, .thumb:active {
+.thumb:hover,
+.thumb:active {
    transform: scale(1.1);
    background-color: #585858;
 }
@@ -158,7 +164,7 @@ a:hover{
 
 .custom-checkbox>input:not(:disabled):active+span::before {
    background-color: #969ca3;
-   border-color:#969ca3;
+   border-color: #969ca3;
 }
 
 .custom-checkbox>input:focus+span::before {
@@ -172,3 +178,60 @@ a:hover{
    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
 }
 
+
+
+
+.showSettingAnim {
+   animation: animSetting 1s ease forwards;
+
+}
+
+.hideSettingAnim {
+   animation: hideSetting 1s ease forwards;
+
+}
+.toastAnim {
+   animation: toastAnim 2s ease forwards;
+}
+
+@keyframes toastAnim {
+   0% {
+      top: -50px;
+   }
+
+   50% {
+      top: 0;
+   }
+   70%{
+      top: 0;
+   }
+
+   100% {
+      top: -50px;
+   }
+}
+
+@keyframes animSetting {
+   from {
+      height: 0;
+      padding: 0 0px;
+   }
+
+   to {
+      padding: 30px 30px;
+      height: 550px;
+   }
+}
+
+@keyframes hideSetting {
+   from {
+      padding: 30px 30px;
+      height: 550px;
+   }
+
+   to {
+      height: 0px;
+      padding: 0px 0px;
+      opacity: 0;
+   }
+}

@@ -28,7 +28,7 @@ const CustomSelect = ({ options, label, onClick, state, onSelectOption, selectOp
       <div className="z-10 relative cursor-pointer">
          <div className="flex gap-1 justify-end items-center" onClick={onClick}>{label} {selectOption} <span className="transition-all duration-150 hover:scale-125">
             {state ? <GoChevronUp size={'20px'} /> : <GoChevronDown size={'20px'} />}</span></div>
-         <div className="absolute flex flex-col  w-full  text-[16px] ">
+         <div className="absolute flex flex-col right-0  text-[16px] ">
             {state &&
                options.map(op => (
                   <div onClick={() => setSelectOption(op)}
