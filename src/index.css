@@ -37,6 +37,18 @@ body{
 a:hover {
    text-decoration: underline;
 }
+.modalProduct::-webkit-scrollbar {
+   width: 8px;
+}
+
+.modalProduct::-webkit-scrollbar-track {
+   background: rgb(232, 232, 232);
+}
+
+.modalProduct::-webkit-scrollbar-thumb {
+   background-color: #adadad;
+   border-radius: 20px;
+}
 
 .size {
    transition: all 1s;

@@ -13,7 +13,7 @@ export const animText = {
 
 export const animLeftText = {
    hidden: {
-      x: -200,
+      x: -10,
       opacity: 0,
    },
    visible: (custom: number) => ({
@@ -25,7 +25,7 @@ export const animLeftText = {
 
 export const animRightText = {
    hidden: {
-      x: 200,
+      x: 10,
       opacity: 0,
    },
    visible: (custom: number) => ({
@@ -62,3 +62,4 @@ export const downAnimText = {
 
    })
 }
+

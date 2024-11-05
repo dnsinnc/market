@@ -91,26 +91,24 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
 
                {serching ? <CustomInput autoFocus={autoFocus} value={sessionStorage.getItem('search') || ""} onChange={changeValueOnListing} placeholder={'Search products'} type={'search'} img={<CiSearch size={'30px'} />} /> : <CustomInput onChange={changeValue} value={search} placeholder={'Search products'} type={'search'} img={<CiSearch size={'30px'} />} />}
                {showModalOfProducts &&
-                  <div className='absolute rounded-b-xl z-20 max-h-[430px] bg-white p-[20px] overflow-y-scroll w-full'>
-                     {filteredOffers.length ? <div className="offers-list justify-start">
-                        {isLoading && <Loader />}
-                        {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
-                        {offers && filteredOffers.map((o: IOffer) => (
-                           <div  key={o.id} className="item">
-                              <div onClick={() => nav(`/market/product/${o.id}`)} className="item__image">
-                                 <img src={o.image} alt={o.title} />
-                              </div>
-                              <div className="item__info">
-                                 <p className="item__title">{o.title}</p>
-                                 <div className="item__price">
-                                    <span className="in-stock">IN STOCK</span>
-                                    <p>${o.price}</p>
+                  <div className='  absolute pt-[20px] z-20  bg-white w-full'>
+                     <div className='flex justify-center max-h-[350px] modalProduct overflow-y-scroll rounded-b-xl p-[20px]  '>
+                        {filteredOffers.length ? <div className="offers-list justify-start">
+                           {isLoading && <Loader />}
+                           {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
+                           {offers && filteredOffers.map((o: IOffer) => (
+                              <div key={o.id} className="item ">
+                                 <div onClick={() => nav(`/market/product/${o.id}`)} className="item__image">
+                                    <img src={o.image} alt={o.title} />
+                                 </div>
+                                 <div className="item__info">
+                                    <p className="item__title">{o.title}</p>
+
                                  </div>
                               </div>
-                           </div>
-                        ))}
-                     </div> : <p className='text-center opacity-[0.6]'>Product not found</p>}
-                  </div>}
+                           ))}
+                        </div> : <p className='text-center opacity-[0.6]'>Product not found</p>}
+                     </div></div>}
             </div>
             <div className='flex gap-[30px]'>
                <Menu />
