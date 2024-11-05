@@ -22,6 +22,10 @@
    font-family: 'Inter Medium';
 }
 
+body{
+   overflow-x: hidden;
+}
+
 
 .container {
    max-width: 1440px;
@@ -104,17 +108,16 @@ a:hover {
    height: 21px;
    width: 21px;
    background-color: #000000;
-
    border-radius: 50%;
    cursor: pointer;
    margin-top: -5px;
-   transition: all .2s;
+   transition: transform 0.3s;
 }
 
 .thumb:hover,
 .thumb:active {
    transform: scale(1.1);
-   background-color: #585858;
+   /* background-color: #585858; */
 }
 
 .tooltip {
@@ -167,9 +170,6 @@ a:hover {
    border-color: #969ca3;
 }
 
-.custom-checkbox>input:focus+span::before {
-   box-shadow: 0 0 0 0.2rem rgba(92, 94, 96, 0.25);
-}
 
 
 .custom-checkbox>input:checked+span::before {

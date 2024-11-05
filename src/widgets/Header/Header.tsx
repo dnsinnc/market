@@ -14,6 +14,8 @@ import { useAppSelector } from '../../store/hooks';
 import { useGetAllOffersQuery } from '../../store/services/OffersService';
 import { IOffer } from '../../store/reducer/models';
 import ErrorMessage from '../../shared/UI/ErrorMessage';
+import { motion } from 'framer-motion';
+import { downAnimText } from '../../app/MAnimations/animations';
 
 
 
@@ -64,17 +66,22 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
    };
 
    return (
-      <header className='header  flex-wrap gap-[20px] md:justify-between justify-center container'>
+      <motion.header
+         initial="hidden"
+         animate="visible"
+         variants={downAnimText}
+         custom={2}
+         className='header  flex-wrap gap-[20px] md:justify-between justify-center container'>
          <div onClick={() => nav('/market')} className='header__logo cursor-pointer'>
             <img src={Logo} alt="LOGO" />
             <p className=''>Ecommerce</p>
          </div>
 
          <ol className='header__navigation lg:flex hidden'>
-            <li onClick={() => nav('/market')}>Home</li>
-            <li onClick={() => nav('/market/listing')}>Products </li>
-            <li>About</li>
-            <li>Contact</li>
+            <li className='hover:underline' onClick={() => nav('/market')}>Home</li>
+            <li className='hover:underline' onClick={() => nav('/market/listing')}>Products </li>
+            <li className='opacity-[0.5]'>About</li>
+            <li className='opacity-[0.5]'>Contact</li>
          </ol>
 
 
@@ -84,7 +91,7 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
 
                {serching ? <CustomInput autoFocus={autoFocus} value={sessionStorage.getItem('search') || ""} onChange={changeValueOnListing} placeholder={'Search products'} type={'search'} img={<CiSearch size={'30px'} />} /> : <CustomInput onChange={changeValue} value={search} placeholder={'Search products'} type={'search'} img={<CiSearch size={'30px'} />} />}
                {showModalOfProducts &&
-                  <div className='absolute rounded-b-xl z-20 max-h-[400px]  bg-white p-[20px] overflow-y-scroll w-full'>
+                  <div className='absolute rounded-b-xl z-20 max-h-[430px] bg-white p-[20px] overflow-y-scroll w-full'>
                      {filteredOffers.length ? <div className="offers-list justify-start">
                         {isLoading && <Loader />}
                         {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
@@ -117,7 +124,7 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
                <UserIcon />
             </div>
          </div>
-      </header>
+      </motion.header>
    );
 }
 

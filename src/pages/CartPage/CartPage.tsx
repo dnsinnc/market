@@ -13,6 +13,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { IOffer } from "../../store/reducer/models";
 import Header from "../../widgets/Header/Header";
 import AboutUs from "../../widgets/Footer/AboutUs";
+import { motion } from "framer-motion";
+import { animLeftText, animRightText } from "../../app/MAnimations/animations";
 
 const CartPage: FC = () => {
    const offersCart = useAppSelector((state) => state.CartSlicer.items)
@@ -46,14 +48,21 @@ const CartPage: FC = () => {
    }, [offersCart]);
 
 
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, [])
+
    return (
-      <div className="page">
-         <div>
+      <motion.div
+         initial="hidden"
+         animate="visible" 
+         className="page">
+         <div >
             <DiscountCard/>
             <Header/>
          </div>
          <div>
-            <div className="bg-[#f6f6f6] h-[160px]">
+            <div className="bg-[#f6f6f6] overflow-hidden h-[160px]">
                <div className="container h-full flex flex-col justify-center">
                   <h2 className="text-2xl font-['Inter-ExtraBold']">Cart</h2>
                   <div className="text-[clamp(8px,3.5vw,16px)] cursor-pointer flex gap-3 items-center">
@@ -73,9 +82,8 @@ const CartPage: FC = () => {
 
 
                      {offersCart.length ?
-                        offersCart.map((offer) => (
-
-                           <div className="xl:max-w-[628px] lg:flex-row flex flex-col mt-[40px] gap-4 w-full justify-between ">
+                        offersCart.map((offer, i) => (
+                           <motion.div variants={animLeftText} custom={i}  className="xl:max-w-[628px] lg:flex-row flex flex-col mt-[40px] gap-4 w-full justify-between ">
                               <div className="flex gap-5 items-center ">
                                  <div onClick={() => nav(`/market/product/${offer.id}`)} className="border-solid border-2 border-[#e1e1e1] p-[10px] rounded-sm hover:scale-105 transition-all cursor-pointer">
                                     <img className="w-[50px]" src={offer.image} alt="" />
@@ -98,14 +106,14 @@ const CartPage: FC = () => {
                                        <RxCross1 />
                                     </div>
                                  </div>
-                           </div>
+                           </motion.div>
                         ))
 
                         :
                         <div className="font-['Inter-ExtraBold'] text-[grey] pt-[80px]">The basket is empty, 
                            <span onClick={() => nav('/market/listing')} className="underline cursor-pointer text-[black] font-['Inter-ExtraBold']"> find the products!</span></div>}
                   </div>
-                  <div className="p-[24px] mt-[56px] border-2 border-solid border-[#e1e1e1]  w-[340px]">
+                  <motion.div variants={animRightText} className="p-[24px] mt-[56px] border-2 border-solid border-[#e1e1e1]  w-[340px]">
                      <div>
                         <p className="text-[16px] font-['Inter-ExtraBold']">Order Summary</p>
                      </div>
@@ -131,15 +139,15 @@ const CartPage: FC = () => {
                         <CustomButton onClick={() => console.log('Checkout')}>Checkout</CustomButton>
                         <p onClick={() => nav('/market/listing')} className="underline cursor-pointer">Continue Shopping</p>
                      </div>
-                  </div>
+                  </motion.div>
                </div>
 
             </section>
          </div>
-         <div>
+         <div className="overflow-hidden">
             <AboutUs/>
          </div>
-      </div>
+      </motion.div>
    );
 }
 

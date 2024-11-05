@@ -5,6 +5,8 @@ import { FaYoutube, FaInstagram, FaGithub, FaCcMastercard } from "react-icons/fa
 
 import { RiVisaLine } from "react-icons/ri";
 import { GrAmex } from "react-icons/gr";
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 
 
@@ -17,10 +19,16 @@ interface AboutUsProps {
 function AboutUs({ variant }: AboutUsProps) {
 
 
+   const ref = useRef(null)
+   const isInView = useInView(ref)
 
    return (
-      <div className={variant === 'flooded' ? 'wrapper': ''}>
-         <div className='container about-us '>
+      <motion.div
+         initial="hidden"
+         animate="visible"
+         ref={ref}
+          className={`overflow-hidden ${variant === 'flooded' ? 'wrapper ' : ' '} transition-all duration-[0.8s] ${isInView ? '' : 'translate-y-[200px] opacity-0'}`}>
+         <div className='container  about-us '>
             <div className='about-us__wrapp'>
                <div className='logo'>
                   <div className='logo__wrapp'>
@@ -71,7 +79,7 @@ function AboutUs({ variant }: AboutUsProps) {
 
          </div>
          
-      </div>
+      </motion.div>
 
    );
 }

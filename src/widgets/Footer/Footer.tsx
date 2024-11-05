@@ -1,11 +1,21 @@
+import { motion, useInView } from "framer-motion";
 import { CustomButton, CustomInput } from "../../shared";
+
+import { useRef } from "react";
 
 
 
 function Footer() {
+
+const ref = useRef(null)
+const isInView = useInView(ref)
    return (
-      <div className="wrapper mt-[200px]">
-         <footer className="footer-form  container ">
+      <motion.div
+         ref={ref}
+         initial="hidden"
+         animate="visible"
+         className="wrapper mt-[200px]">
+         <motion.footer className={`footer-form  container transition-all duration-700 ${isInView ? '' : '-translate-x-[200px] opacity-0'}`}>
             <div className="footer-form__left ">
                <h3 className=" text-[24px] font-['Inter-ExtraBold']">
                   Join Our Newsletter
@@ -25,8 +35,8 @@ function Footer() {
                </div>
             </form>
 
-         </footer>
-         </div>
+         </motion.footer>
+   </motion.div>
 
    );
 }

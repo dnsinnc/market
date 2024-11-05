@@ -10,12 +10,13 @@
    font-size: clamp(40px, 10vw, 20px);
    line-height: 150%;
    font-family: 'Inter-ExtraBold';
+   font-size: clamp(26px, 2.5vw, 40px)
 }
 
 .subtitle {
    color: #474B57;
    line-height: 175%;
-   font-size: 14px;
+      font-size: clamp(12px, 2.5vw, 16px)
 }
 
 
@@ -79,7 +80,7 @@
    }
 }
 
-
+       
 .best-selling {
    text-align: center;
    padding-top: 170px;

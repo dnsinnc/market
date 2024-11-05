@@ -205,12 +205,13 @@
    flex-direction: column;
    gap: 50px;
    z-index: 99;
+   // transform: translateY(-200%);
 
 }
 
 .animMenuClose {
-   transform: translateY(-100%);
-   transition: all .6s;
+   transform: translateY(-500%);
+   transition: all 2s;
 }
 
 .animMenuOpen {

@@ -12,6 +12,8 @@ import { RxCross2 } from "react-icons/rx";
 import { GoChevronRight } from "react-icons/go";
 import CustomSelect from "../../shared/CustomSelect/CustomSelect";
 import { VscSettings } from "react-icons/vsc";
+import { motion } from "framer-motion";
+import { animLeftText, downAnimText } from "../../app/MAnimations/animations";
 
 
 
@@ -37,6 +39,7 @@ const ListingPage: FC = () => {
       setsShowSelect(false)
    }
 
+   
    useEffect(() => {
 
       setSearchValue(sessionStorage.getItem('search'))
@@ -90,7 +93,10 @@ const ListingPage: FC = () => {
    const options = ['Price (Low to High)', 'Price (High to Low)', 'Best Rated']
 
    return (
-      <div className="page">
+      <motion.div
+         initial="hidden"
+         animate="visible"
+         className="page">
          <div>
             <DiscountCard />
             <Header serching autoFocus={true} />
@@ -99,12 +105,13 @@ const ListingPage: FC = () => {
             </div>
          </div>
 
-         <section className="container pt-9 ">
+         <section
+              className="container pt-9 ">
             <div className="md:hidden flex justify-start py-[20px]">
                <div className="hover:scale-125 cursor-pointer duration-200">
                   <VscSettings onClick={() => setShowSortSetting(!showSortSetting)} size={"30px"} /></div></div>
             <div className="md:flex-nowrap flex gap-[20px] justify-evenly flex-wrap">
-               <div className={`md:min-w-[300px] overflow-hidden md:hidden flex 
+               <div  className={`md:min-w-[300px] overflow-hidden md:hidden flex 
                   ${!showSortSetting ? 'hideSettingAnim' : 'showSettingAnim'} min-w-full gap-[20px] 
                   rounded-[6px]  flex-col border-solid border-2 border-[#f6f6f6] `}>
                   <p>Categories</p>
@@ -143,7 +150,7 @@ const ListingPage: FC = () => {
                   </div>
                </div>
 
-                  <div className="md:min-w-[350px] overflow-hidden md:flex hidden 
+                  <motion.div custom={1.5} variants={animLeftText} className="md:min-w-[350px] overflow-hidden md:flex hidden 
                    min-w-full gap-[20px] p-[30px] h-[550px] rounded-[6px]  flex-col border-solid border-2 border-[#f6f6f6] ">
                      <p>Categories</p>
                      {categories.map(categ => (
@@ -179,41 +186,41 @@ const ListingPage: FC = () => {
                            )}
                         />
                      </div>
-                  </div>
+                  </motion.div>
 
             
 
-               <div className="w-full relative flex flex-col gap-4">
+               <motion.div custom={1.5} variants={downAnimText} className="w-full relative flex flex-col gap-4">
                   <p>Applied Filters:</p>
                   <div className="flex gap-3 flex-wrap">
                      {selectedCategories.map(category => (
-                        <div
+                        <div onClick = { () => handleCategoryChange(category) }
                            key={category}
-                           className="px-4 hover:bg-[#b8b8b8] cursor-pointer transition-all 
-                           duration-[.6s] py-2 text-[14px] flex gap-2 items-center border-solid border-2 
+                           className="px-4 hover:bg-[#a67d7d] cursor-pointer transition-all 
+                           duration-[.3s] py-2 text-[14px] flex gap-2 items-center border-solid border-2 
                            border-[#f6f6f6] rounded-[30px] capitalize"
                         >
                            {category}
                            <span
-                              onClick={() => handleCategoryChange(category)}
+                              
                               className="hover:scale-125 cursor-pointer  transition-all duration-[.4s]"><RxCross2 size={'20px'} />
                            </span>
                         </div>
                      ))}
                   </div>
-                  <div className="flex-wrap gap-4 z-[100] flex text-[14px] justify-between opacity-[0.7]">
+                  <div className="flex-wrap gap-4 z-[100] flex  text-[14px] justify-between opacity-[0.7]">
                      <p > {filteredOffers.length} Results</p>
-                     <div className="min-w-[200px]">
+                     <div className="min-w-[200px] ">
                         <CustomSelect onSelectOption={(op: SetStateAction<string>) => onSelectOption(op)} options={options}
                            label={`SORT BY: `} onClick={onShowSelect} state={showSelect} selectOption={selectedOpt} />
                      </div>
                   </div>
-                  {!isLoading &&
-                     filteredOffers.length === 0 ? <p className='text-[20px] pt-[80px] text-center opacity-[0.6] '>Product not found</p> : ""
+                  {!isLoading && !error &&
+                     filteredOffers.length === 0 ? <p className='text-[20px] pt-[80px] text-center opacity-[0.6] '>Product not found :(</p> : ""
                   }
 
 
-                  <div className="offers-list justify-between">
+                  <div  className="offers-list justify-between">
                      {isLoading && <Loader />}
                      {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
                      {offers && filteredOffers.map((o: IOffer) => (
@@ -231,15 +238,15 @@ const ListingPage: FC = () => {
                         </div>
                      ))}
                   </div>
-               </div>
+               </motion.div>
             </div>
          </section>
 
-         <div>
+         <div className="overflow-hidden">
             <Footer />
             <AboutUs />
          </div>
-      </div>
+      </motion.div>
    );
 }
 
