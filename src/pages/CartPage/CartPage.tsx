@@ -10,11 +10,11 @@ import { FiPlus } from "react-icons/fi";
 import { changeQuantity, deleteOffer } from "../../store/reducer/CartSlicer";
 import { RxCross1 } from "react-icons/rx";
 import { Link, useNavigate } from "react-router-dom";
-import { IOffer } from "../../store/reducer/models";
 import Header from "../../widgets/Header/Header";
 import AboutUs from "../../widgets/Footer/AboutUs";
 import { motion } from "framer-motion";
 import { animLeftText, animRightText } from "../../app/MAnimations/animations";
+import { сartService } from '../../processes/cart.service'
 
 const CartPage: FC = () => {
    const offersCart = useAppSelector((state) => state.CartSlicer.items)
@@ -27,19 +27,10 @@ const CartPage: FC = () => {
    const handleQuantityChange = (id: number, size: string, quantity: number) => {
       dispatch(changeQuantity({ id, size, quantity }));
    }
-
-   const calculateTotalPrice = (offersCart: IOffer[]) => {
-      const totalPrice = offersCart.reduce((total, item) => {
-         const itemTotalPrice = item.totalPrice ?? 0;
-         return total + itemTotalPrice;
-      }, 0);
-
-      return totalPrice
-   };
+const totalPrice = сartService.calculateTotalPrice(offersCart)
 
    useEffect(() => {
-     
-      const totalPrice = calculateTotalPrice(offersCart);
+
       if (totalPrice < 100) {
          setShipping(30);
       } else {
@@ -66,30 +57,29 @@ const CartPage: FC = () => {
                <div className="container h-full flex flex-col justify-center">
                   <h2 className="text-2xl font-['Inter-ExtraBold']">Cart</h2>
                   <div className="text-[clamp(8px,3.5vw,16px)] cursor-pointer flex gap-3 items-center">
-                     <span className="opacity-[0.8] "><Link to={'/market'}>Ecommerce</Link></span><GoChevronRight color="" /> Cart
+                     <span className="opacity-[0.8] "><Link to={'/market'}>Ecommerce</Link></span><GoChevronRight /> Cart
                   </div>
                </div>
             </div>
             <section className="container">
                <div className="sm:flex-row xl:justify-between flex flex-wrap justify-center gap-10">
 
-                  <div>
+                  <div className="lg:w-auto w-full">
                      <div className="pt-[72px]">
                         <h2 className="text-[16px] font-['Inter-ExtraBold']">Your cart</h2>
-
                         <hr className="mt-[20px] " />
                      </div>
 
 
                      {offersCart.length ?
                         offersCart.map((offer, i) => (
-                           <motion.div variants={animLeftText} custom={i}  className="xl:max-w-[628px] lg:flex-row flex flex-col mt-[40px] gap-4 w-full justify-between ">
+                           <motion.div variants={animLeftText} custom={i} className="flex-col items-center sm:flex-row flex  mt-[40px] w-full gap-4   ">
                               <div className="flex gap-5 items-center ">
-                                 <div onClick={() => nav(`/market/product/${offer.id}`)} className="border-solid border-2 border-[#e1e1e1] p-[10px] rounded-sm hover:scale-105 transition-all cursor-pointer">
+                                 <div onClick={() => nav(`/market/product/${offer.id}`)} className="border-solid border-2 border-[#e1e1e1] p-[10px] w-[60px]  rounded-sm hover:scale-105 transition-all cursor-pointer">
                                     <img className="w-[50px]" src={offer.image} alt="" />
                                  </div>
                                  <div>
-                                    <p className="text-[clamp(10px,3.5vw,14px)]">{offer.title} </p>
+                                    <p className="text-[clamp(10px,3.5vw,14px)] max-w-[250px]">{offer.title} </p>
                                     {offer.size ?
                                        <p className="opacity-[0.7]">— Size: {offer.size} </p> : ''
                                     }
@@ -113,11 +103,15 @@ const CartPage: FC = () => {
                         <div className="font-['Inter-ExtraBold'] text-[grey] pt-[80px]">The basket is empty, 
                            <span onClick={() => nav('/market/listing')} className="underline cursor-pointer text-[black] font-['Inter-ExtraBold']"> find the products!</span></div>}
                   </div>
-                  <motion.div variants={animRightText} className="p-[24px] mt-[56px] border-2 border-solid border-[#e1e1e1]  w-[340px]">
+                  <motion.div variants={animRightText} className="sticky top-[200px] p-[24px] max-h-[450px] mt-[56px] border-2 border-solid border-[#e1e1e1] w-full lg:w-[340px]">
                      <div>
-                        <p className="text-[16px] font-['Inter-ExtraBold']">Order Summary</p>
+                        <p className="text-[16px]  font-['Inter-ExtraBold']">Order Summary</p>
                      </div>
                      <div className="flex flex-col gap-4 pt-[40px]">
+                        <div className="flex justify-between">
+                           <p className="opacity-[0.7]">Subtotal:</p>
+                           $ {totalPrice.toFixed(2)}
+                        </div>
                         <div className="flex justify-between">
                            <p className="opacity-[0.7]">Shipping:</p>
                            {offersCart.length ? shipping !== 30 ? <p>Free</p> :
@@ -132,11 +126,11 @@ const CartPage: FC = () => {
                      <hr className="my-[30px]" />
                      <div className="flex justify-between">
                         <p>Total: </p>
-                        $ {offersCart.length ? (calculateTotalPrice((offersCart)) + shipping).toFixed(2): "00.00"}
+                        $ {offersCart.length ? (totalPrice + shipping + 3).toFixed(2): "00.00"}
                      </div>
 
                      <div className="pt-[32px] flex flex-col items-center gap-[32px]">
-                        <CustomButton onClick={() => console.log('Checkout')}>Checkout</CustomButton>
+                        <CustomButton onClick={() => nav('/market/checkout')}>Checkout</CustomButton>
                         <p onClick={() => nav('/market/listing')} className="underline cursor-pointer">Continue Shopping</p>
                      </div>
                   </motion.div>

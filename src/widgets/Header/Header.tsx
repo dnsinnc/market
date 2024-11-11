@@ -91,18 +91,18 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
 
                {serching ? <CustomInput autoFocus={autoFocus} value={sessionStorage.getItem('search') || ""} onChange={changeValueOnListing} placeholder={'Search products'} type={'search'} img={<CiSearch size={'30px'} />} /> : <CustomInput onChange={changeValue} value={search} placeholder={'Search products'} type={'search'} img={<CiSearch size={'30px'} />} />}
                {showModalOfProducts &&
-                  <div className='  absolute pt-[20px] z-20  bg-white w-full'>
-                     <div className='flex justify-center max-h-[350px] modalProduct overflow-y-scroll rounded-b-xl p-[20px]  '>
-                        {filteredOffers.length ? <div className="offers-list justify-start">
+                  <div className='absolute pb-[20px] rounded-b-[10px]  z-20  bg-[#ffffff] w-full'>
+                     <div className='relative w-full flex max-h-[350px] modalProduct overflow-y-scroll rounded-b-xl p-[10px]  '>
+                        {filteredOffers.length ? <div className="offers-list ">
                            {isLoading && <Loader />}
                            {error && <ErrorMessage>Try again later, please...</ErrorMessage>}
                            {offers && filteredOffers.map((o: IOffer) => (
-                              <div key={o.id} className="item ">
-                                 <div onClick={() => nav(`/market/product/${o.id}`)} className="item__image">
-                                    <img src={o.image} alt={o.title} />
+                              <div key={o.id} className="max-h-[200px] pb-[5px] flex items-center  justify-between  w-full gap-[20px]">
+                                 <div onClick={() => nav(`/market/product/${o.id}`)} className="item__image p-[20px] max-w-[120px]">
+                                    <img className='' src={o.image} alt={o.title} />
                                  </div>
-                                 <div className="item__info">
-                                    <p className="item__title">{o.title}</p>
+                                 <div>
+                                    <p className=" truncated-text text-ellipsis w-[100px] ">{o.title}...</p>
 
                                  </div>
                               </div>

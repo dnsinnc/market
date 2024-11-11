@@ -3,7 +3,7 @@ import { TiDelete } from "react-icons/ti";
 
 
 interface IInput {
-   placeholder: string;
+   placeholder?: string;
    type: string;
    img?: JSX.Element;
    value?: string ;

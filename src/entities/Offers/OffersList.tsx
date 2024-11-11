@@ -30,7 +30,7 @@ function OffersList({ limit, category }: OffersListProps) {
 
       <div ref={ref} className="flex gap-10 flex-wrap justify-center">
          {
-             isLoading && <Loader />
+            isLoading && <div className="my-[80px]"><Loader /></div>
          }
          {
             error && <ErrorMessage>Try again later, please...</ErrorMessage>
@@ -40,7 +40,7 @@ function OffersList({ limit, category }: OffersListProps) {
             offers.map((o: IOffer) => (
                <div  key={o.id} className={`item md:w-[250px] w-full transition-all duration-700 ${isInView ? '' : '-translate-y-[100px] opacity-0'}`}>
                   <div onClick={() => redirectOnProduct(o)} className="item__image">
-                     <img src={o.image} alt={o.title} />
+                     {!isLoading ? <img src={o.image} alt={o.title} /> : <div className="h-[120px]"><Loader /></div>}
                   </div>
                   <div className="item__info">
                      <p className="item__title">{o.title}</p>

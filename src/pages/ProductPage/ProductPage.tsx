@@ -22,12 +22,14 @@ import '../../shared'
 import Footer from "../../widgets/Footer/Footer";
 import Header from "../../widgets/Header/Header";
 import AboutUs from "../../widgets/Footer/AboutUs";
+import OfferSkelet from "../../shared/UI/Loader/OfferSkelet";
+import TextSkelet from "../../shared/UI/Loader/TextSkelet";
 
 const ProductPage: FC = () => {
 
    const params = useParams()
 
-   const { data: offer } = useGetOffersByIdQuery({ id: params.id })
+   const { data: offer, isLoading } = useGetOffersByIdQuery({ id: params.id })
 
    const [quantity, setQuantity] = useState(1)
    const [selectSize, setSelectSize] = useState('')
@@ -115,11 +117,12 @@ const ProductPage: FC = () => {
                  
                   <div className="md:justify-between md:flex-nowrap gap-[20px] flex  flex-wrap">
                      <div
-                        className='md:w-1/2 w-full flex border-solid border-2 rounded-[10px] border-[#e1e1e1] h-[500px] items-center justify-center '><img className='max-w-[300px] max-h-[200px]' src={offer?.image} alt="" />
+                        className='md:w-1/2 w-full flex border-solid border-2 rounded-[10px] border-[#e1e1e1] h-[500px] items-center justify-center '>
+                        {!isLoading ? <img className='max-w-[300px] max-h-[200px]' src={offer?.image} alt="" /> : <OfferSkelet/>}
                      </div>
                      <div className="relative md:w-[438px] w-full flex flex-col ">
                         <div className="h-[500px] md:max-w-[438px] w-full  ">
-                           <h2 className="text-2xl font-['Inter-ExtraBold']">{offer?.title}</h2>
+                           {!isLoading ? <h2 className="text-2xl font-['Inter-ExtraBold']">{offer?.title}</h2> : <div className="h-[40px]"><TextSkelet /></div>}
                            <div className="flex gap-4 items-center pt-[12px]">
                               <div
                                  className="flex items-center justify-center rounded-[20px] px-[10px] py-[5px] max-w-[220px] bg-[#f6f6f6]"><RxStarFilled /> {offer?.rating.rate} — {offer?.rating.count} Reviews
@@ -129,7 +132,9 @@ const ProductPage: FC = () => {
 
                               </div>
                            </div>
-                           <p className="text-xl pt-[24px]">${offer?.price}</p>
+                           <div className="pt-[24px]">
+                              {!isLoading ? <p className="text-xl ">${offer?.price}</p> : <div className="h-[30px] w-[60px]"><TextSkelet /></div>}
+                          </div>
 
 
                            <div className="pt-[50px]">

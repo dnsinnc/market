@@ -6,6 +6,7 @@ import CartPage from './pages/CartPage/CartPage';
 
 import './index.css';
 import ListingPage from './pages/ListingPage/ListingPage';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
          <Route path="/market/product/:id" element={<ProductPage />} />
          <Route path="/market/cart" element={<CartPage />} />
          <Route path="/market/listing" element={<ListingPage />} />
+         <Route path="/market/checkout" element={<CheckoutPage />} />
       </Routes>
 
    )

@@ -39,15 +39,32 @@ a:hover {
 }
 .modalProduct::-webkit-scrollbar {
    width: 8px;
+   position: absolute;
+      height: 100%;
+      top: 0;
+   
 }
 
 .modalProduct::-webkit-scrollbar-track {
-   background: rgb(232, 232, 232);
+   background: rgb(255, 255, 255);
+   position: absolute;
+      height: 100%;
+      top: 0;
 }
 
 .modalProduct::-webkit-scrollbar-thumb {
    background-color: #adadad;
    border-radius: 20px;
+   
+}
+
+.truncated-text {
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   /* Количество строк */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .size {
