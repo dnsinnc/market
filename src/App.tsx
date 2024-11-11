@@ -14,8 +14,8 @@ function App() {
    return (
 
       <Routes>
-         <Route path="/market" element={<HomePage />} />
-         <Route path="/market/product/:id" element={<ProductPage />} />
+         <Route path="/market" element={<HomePage />}  />
+         <Route path="/market/product/:id" element={<ProductPage />} errorElement={'/market'} />
          <Route path="/market/cart" element={<CartPage />} />
          <Route path="/market/listing" element={<ListingPage />} />
          <Route path="/market/checkout" element={<CheckoutPage />} />
