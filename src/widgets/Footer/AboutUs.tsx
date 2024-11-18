@@ -28,7 +28,7 @@ function AboutUs({ variant }: AboutUsProps) {
          animate="visible"
          ref={ref}
           className={`overflow-hidden ${variant === 'flooded' ? 'wrapper ' : ' '} transition-all duration-[0.8s] ${isInView ? '' : 'translate-y-[200px] opacity-0'}`}>
-         <div className='container  about-us '>
+         <div className='container pt-[200px] about-us '>
             <div className='about-us__wrapp'>
                <div className='logo'>
                   <div className='logo__wrapp'>

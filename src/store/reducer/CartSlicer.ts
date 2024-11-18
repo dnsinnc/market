@@ -1,17 +1,21 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { IOffer } from "./models"
+import {deleteDoc, doc} from "firebase/firestore";
+import {db} from "../../firebase.ts";
+import {getAuth} from "firebase/auth";
 
 
 
-interface BasketState {
+
+interface CartState {
    items: IOffer[],
    isLoading: boolean,
    error: string,
 }
 
 
-const initialState: BasketState = {
-   items: JSON.parse(localStorage.getItem('items') || '[]'),
+const initialState: CartState = {
+   items: JSON.parse(sessionStorage.getItem('items') || '[]'),
    isLoading: false,
    error: '',
 }
@@ -35,17 +39,43 @@ export const CartSlicer = createSlice({
             };
             state.items.push(newItem); 
          }
-
-         localStorage.setItem('items', JSON.stringify(state.items)); 
+         const auth = getAuth();
+         const user = auth.currentUser;
+         
+         if(!user){
+            sessionStorage.setItem('items', JSON.stringify(state.items));
+         }
       },
       deleteOffer: (state, action: PayloadAction<IOffer>) => {
+         const auth = getAuth();
+         const user = auth.currentUser;
          const items = state.items.filter(item => item.id !== action.payload.id || item.size !== action.payload.size);
-         localStorage.setItem('items', JSON.stringify(items));
+         sessionStorage.setItem('items', JSON.stringify(items));
          state.items = items;
+
+
+
+
+         if (user?.uid && action.payload?.uid) {
+            const productId = action.payload.uid;
+            console.log(productId);
+
+            const productDocRef = doc(db, "users", user.uid, "products", productId);
+
+            deleteDoc(productDocRef)
+                .then(() => {
+                   console.log("Product successfully deleted from Firestore");
+                })
+                .catch((error) => {
+                   console.error("Error deleting product from Firestore:", error);
+                });
+         } else {
+            console.error("Invalid user or productId");
+         }
       },
       deleteAllOffers: (state) => {
          const items: IOffer[] = [];
-         localStorage.setItem('items', JSON.stringify(items));
+         sessionStorage.setItem('items', JSON.stringify(items));
          state.items = items;
       },
       changeQuantity: (state, action: PayloadAction<{ id: number; size: string; quantity: number }>) => {
@@ -58,7 +88,7 @@ export const CartSlicer = createSlice({
             item.totalPrice = item.price * item.quantity; 
          }
 
-         localStorage.setItem('items', JSON.stringify(state.items));
+         sessionStorage.setItem('items', JSON.stringify(state.items));
       }
    }
 });

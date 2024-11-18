@@ -31,6 +31,7 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
    const [search, setSearch] = useState<string | undefined>(undefined);
    const [showModalOfProducts, setShowModalOfProducts] = useState<boolean>(false);
    const { data: offers, isLoading, error } = useGetAllOffersQuery({ category: '', limit: 999 });
+   
 
 
    const nav = useNavigate()
@@ -110,13 +111,12 @@ const Header: FC<HeaderProps> = ({ autoFocus, offerSucc, serching }) => {
                         </div> : <p className='text-center opacity-[0.6]'>Product not found</p>}
                      </div></div>}
             </div>
-            <div className='flex gap-[30px]'>
+            <div className='flex gap-[30px] items-center'>
                <Menu />
                <div onClick={() => nav('/market/cart')} className={`${offerSucc ? "animate-bounce" : ''} nav-icon relative`}>
                   <SlBasket />
                   {offersCart.length ?
                      <span className='bg-[#fe7474] absolute flex h-[25px] w-[25px] justify-center top-[10px] left-[20px] items-center rounded-full p-[2px] text-[white]'>{offersCart.length}</span> : ''}
-
                </div>
 
                <UserIcon />

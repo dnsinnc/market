@@ -29,9 +29,10 @@ body{
 
 .container {
    max-width: 1440px;
+   
    margin: 0 auto;
 
-   @apply xl:max-w-[1440px] w-full px-4
+   @apply xl:max-w-[1440px] w-full px-6  lg:px-[20px] xl:px-[146px]
 }
 
 a:hover {
@@ -220,14 +221,16 @@ a:hover {
 
 }
 .toastAnim {
-   animation: toastAnim 2s ease forwards;
+   animation: toastAnim 1.5s ease forwards;
 }
 
 @keyframes toastAnim {
    0% {
       top: -50px;
    }
-
+   25% {
+      top: -0px;
+   }
    50% {
       top: 0;
    }
@@ -235,6 +238,7 @@ a:hover {
       top: 0;
    }
 
+ 
    100% {
       top: -50px;
    }

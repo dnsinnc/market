@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { offersApi } from './services/OffersService'
 import CartSlicer from './reducer/CartSlicer'
+import UserSlicer from "./reducer/UserSlicer"
 
 export const store = configureStore({
    reducer: {
       CartSlicer,
+      user: UserSlicer,
       [offersApi.reducerPath]: offersApi.reducer,
    },
    middleware: (getDefaultMiddleware) => 

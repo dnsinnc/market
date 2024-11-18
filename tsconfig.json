@@ -25,7 +25,8 @@
    "include": [
       "src",
       "declarations.d.ts",
-      "routes.tsx"
+      "routes.tsx",
+      "src/firebase.ts"
    ],
    "references": [
       {

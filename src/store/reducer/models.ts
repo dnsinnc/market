@@ -15,4 +15,12 @@ export interface IOffer {
    quantity: number,
    size?: string,
    totalPrice?: number 
+   uid?: string
+}
+
+
+export interface IUser{
+   email: string
+   password: string
+   id: number
 }

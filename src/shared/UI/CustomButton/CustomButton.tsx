@@ -6,17 +6,15 @@ export enum ButtonVariant {
 
 interface ButtonProps {
    children: React.ReactChild | React.ReactNode,
-   onClick: () => void
+   onClick: (e: any) => void
    variant?: ButtonVariant | undefined
 }
-
-
-
 
 
 export const CustomButton: FC<ButtonProps> = ({ children, onClick, variant }) => {
    return (
          <button
+             type='submit'
             onClick={onClick}
             className={`custom-button ${variant === ButtonVariant.transparent ? 'transparent' : ''}`}>
             {children}

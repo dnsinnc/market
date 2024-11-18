@@ -38,7 +38,7 @@ export const animRightText = {
 
 export const upAnimText = {
    hidden: {
-      y: 200,
+      y: 10,
       opacity: 0,
    },
    visible: (custom: number) => ({
@@ -51,7 +51,7 @@ export const upAnimText = {
 
 export const downAnimText = {
    hidden: {
-      y: -200,
+      y: -10,
       opacity: 0,
    },
    visible: (custom: number) => ({

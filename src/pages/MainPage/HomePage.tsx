@@ -20,6 +20,13 @@ const HomePage: FC = () => {
    const ref = useRef(null)
    const isInView = useInView(ref)
 
+   
+   
+
+
+
+
+
    const [toggleActive, setToggleActive] = useState("Men's")
    const [activeProduct, setActiveProduct] = useState('electronics')
 
